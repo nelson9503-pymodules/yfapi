@@ -60,7 +60,7 @@ def extract_price(data: dict, j: dict) -> dict:
             "high": higs[i],
             "low": lows[i],
             "close": clos[i],
-            "adjClose": adjclos[i],
+            "adjclose": adjclos[i],
             "volume": vols[i]
         }
     return data
