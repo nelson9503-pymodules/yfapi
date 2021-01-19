@@ -29,6 +29,6 @@ def solve_timestamp(stamp: int) -> str:
     Convert the timestamp to date.
     """
     stamp = int(stamp)
-    date = datetime.datetime.fromtimestamp(stamp)
+    date = datetime.datetime(1970, 1, 1) + datetime.timedelta(seconds=(stamp/1000))
     date = "{:04d}-{:02d}-{:02d}".format(date.year, date.month, date.day)
     return date
