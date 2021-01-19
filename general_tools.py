@@ -20,7 +20,7 @@ def web_request(url: str) -> dict:
     Server will response json text.
     """
     r = requests.get(url)
-    j = json.loads(r.text)
+    j = json.loads(r.text.replace("—", "-"))
     return j
 
 
