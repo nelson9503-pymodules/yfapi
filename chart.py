@@ -67,6 +67,8 @@ def extract_price(data: dict, j: dict) -> dict:
 
 
 def extract_event(data: dict, j: dict) -> dict:
+    if not "events" in j:
+        return {}
     event = j["events"]
     if "dividends" in event:
         for stamp in event["dividends"]:
