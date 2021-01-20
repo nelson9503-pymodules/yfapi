@@ -37,7 +37,8 @@ def ExtractChart(result: dict) -> dict:
         data["price"][i]["high"] = result["indicators"]["quote"][0]["high"][i]
         data["price"][i]["low"] = result["indicators"]["quote"][0]["low"][i]
         data["price"][i]["close"] = result["indicators"]["quote"][0]["close"][i]
-        data["price"][i]["adjclose"] = result["indicators"]["adjclose"][0]["adjclose"][i]
+        if "adjclose" in result["indicators"]:
+            data["price"][i]["adjclose"] = result["indicators"]["adjclose"][0]["adjclose"][i]
         data["price"][i]["volume"] = result["indicators"]["quote"][0]["volume"][i]
 
     # dividend
