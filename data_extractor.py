@@ -24,7 +24,10 @@ def ExtractChart(result: dict) -> dict:
 
     # price
     result = result["chart"]["result"][0]
-    stamps = result["timestamp"]
+    if "timestamp" in result:
+        stamps = result["timestamp"]
+    else:
+        stamps = []
     for i in range(len(stamps)):
         stamp = stamps[i]
         date = general.timestamp_to_timestring(stamp)
