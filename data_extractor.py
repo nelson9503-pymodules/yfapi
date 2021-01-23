@@ -45,13 +45,13 @@ def ExtractChart(result: dict) -> dict:
     if "events" in result and "dividends" in result["events"]:
         for stamp in result["events"]["dividends"]:
             date = general.timestamp_to_timestring(stamp)
-            data["dividend"][date] = result["events"]["dividends"][stamp]["amount"]
+            data["dividend"][date] = {"dividend": result["events"]["dividends"][stamp]["amount"]}
 
     # stocksplit
     if "events" in result and "splits" in result["events"]:
         for stamp in result["events"]["splits"]:
             date = general.timestamp_to_timestring(stamp)
-            data["stocksplit"][date] = result["events"]["splits"][stamp]["splitRatio"]
+            data["stocksplit"][date] = {"stocksplit": result["events"]["splits"][stamp]["splitRatio"]}
 
     return data
 
