@@ -31,15 +31,14 @@ def ExtractChart(result: dict) -> dict:
     for i in range(len(stamps)):
         stamp = stamps[i]
         date = general.timestamp_to_timestring(stamp)
-        data["price"][i] = {}
-        data["price"][i]["date"] = date
-        data["price"][i]["open"] = result["indicators"]["quote"][0]["open"][i]
-        data["price"][i]["high"] = result["indicators"]["quote"][0]["high"][i]
-        data["price"][i]["low"] = result["indicators"]["quote"][0]["low"][i]
-        data["price"][i]["close"] = result["indicators"]["quote"][0]["close"][i]
+        data["price"][date] = {}
+        data["price"][date]["open"] = result["indicators"]["quote"][0]["open"][i]
+        data["price"][date]["high"] = result["indicators"]["quote"][0]["high"][i]
+        data["price"][date]["low"] = result["indicators"]["quote"][0]["low"][i]
+        data["price"][date]["close"] = result["indicators"]["quote"][0]["close"][i]
         if "adjclose" in result["indicators"]:
-            data["price"][i]["adjclose"] = result["indicators"]["adjclose"][0]["adjclose"][i]
-        data["price"][i]["volume"] = result["indicators"]["quote"][0]["volume"][i]
+            data["price"][date]["adjclose"] = result["indicators"]["adjclose"][0]["adjclose"][i]
+        data["price"][date]["volume"] = result["indicators"]["quote"][0]["volume"][i]
 
     # dividend
     if "events" in result and "dividends" in result["events"]:
