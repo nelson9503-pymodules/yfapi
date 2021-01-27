@@ -30,27 +30,26 @@ def ExtractChart(result: dict) -> dict:
         stamps = []
     for i in range(len(stamps)):
         stamp = stamps[i]
-        date = general.timestamp_to_timestring(stamp)
-        data["price"][date] = {}
-        data["price"][date]["open"] = result["indicators"]["quote"][0]["open"][i]
-        data["price"][date]["high"] = result["indicators"]["quote"][0]["high"][i]
-        data["price"][date]["low"] = result["indicators"]["quote"][0]["low"][i]
-        data["price"][date]["close"] = result["indicators"]["quote"][0]["close"][i]
+        data["price"][stamp] = {}
+        data["price"][stamp]["open"] = result["indicators"]["quote"][0]["open"][i]
+        data["price"][stamp]["high"] = result["indicators"]["quote"][0]["high"][i]
+        data["price"][stamp]["low"] = result["indicators"]["quote"][0]["low"][i]
+        data["price"][stamp]["close"] = result["indicators"]["quote"][0]["close"][i]
         if "adjclose" in result["indicators"]:
-            data["price"][date]["adjclose"] = result["indicators"]["adjclose"][0]["adjclose"][i]
-        data["price"][date]["volume"] = result["indicators"]["quote"][0]["volume"][i]
+            data["price"][stamp]["adjclose"] = result["indicators"]["adjclose"][0]["adjclose"][i]
+        data["price"][stamp]["volume"] = result["indicators"]["quote"][0]["volume"][i]
 
     # dividend
     if "events" in result and "dividends" in result["events"]:
         for stamp in result["events"]["dividends"]:
-            date = general.timestamp_to_timestring(stamp)
-            data["dividend"][date] = {"dividend": result["events"]["dividends"][stamp]["amount"]}
+            data["dividend"][stamp] = {
+                "dividend": result["events"]["dividends"][stamp]["amount"]}
 
     # stocksplit
     if "events" in result and "splits" in result["events"]:
         for stamp in result["events"]["splits"]:
-            date = general.timestamp_to_timestring(stamp)
-            data["stocksplit"][date] = {"stocksplit": result["events"]["splits"][stamp]["splitRatio"]}
+            data["stocksplit"][stamp] = {
+                "stocksplit": result["events"]["splits"][stamp]["splitRatio"]}
 
     return data
 
