@@ -29,7 +29,7 @@ def ExtractChart(result: dict) -> dict:
     else:
         stamps = []
     for i in range(len(stamps)):
-        stamp = stamps[i]
+        stamp = int(stamps[i])
         data["price"][stamp] = {}
         data["price"][stamp]["open"] = result["indicators"]["quote"][0]["open"][i]
         data["price"][stamp]["high"] = result["indicators"]["quote"][0]["high"][i]
@@ -42,13 +42,13 @@ def ExtractChart(result: dict) -> dict:
     # dividend
     if "events" in result and "dividends" in result["events"]:
         for stamp in result["events"]["dividends"]:
-            data["dividend"][stamp] = {
+            data["dividend"][int(stamp)] = {
                 "dividend": result["events"]["dividends"][stamp]["amount"]}
 
     # stocksplit
     if "events" in result and "splits" in result["events"]:
         for stamp in result["events"]["splits"]:
-            data["stocksplit"][stamp] = {
+            data["stocksplit"][int(stamp)] = {
                 "stocksplit": result["events"]["splits"][stamp]["splitRatio"]}
 
     return data
