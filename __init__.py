@@ -1,1 +1,1 @@
-from .api import query
+from .api_object import YFAPI
