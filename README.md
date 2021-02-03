@@ -1,6 +1,6 @@
 # yfapi - Yahoo! Finance API
 
-This api requests the data from Yahoo! Finance REST API.
+This api requests the data from Yahoo! Finance REST API. This module has a test repository: [test_yfapi](https://github.com/nelson9503-pymodules/test_yfapi).
 
 ## Getting Start
 
