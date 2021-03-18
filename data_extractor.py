@@ -91,6 +91,7 @@ def extract_info1_data(result: dict) -> dict:
         "currency": None,
         "financialCurrency": None,
         "marketCap": None,
+        "quoteType": None,
         "sharesOutstanding": None
     }
     check = checkif_skip_extract_info1(result)

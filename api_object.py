@@ -21,6 +21,7 @@ class YFAPI:
         self.__dividend = None
         self.__stocksplit = None
         self.__info = None
+        self.__type = None
 
     def price(self) -> dict:
         """
@@ -101,6 +102,11 @@ class YFAPI:
         if self.__info == None or not "sharesOutstanding" in self.__info:
             self.__get_info1_data()
         return self.__info["sharesOutstanding"]
+    
+    def quoteType(self) -> str:
+        if self.__info == None or not "quoteType" in self.__info:
+            self.__get_info1_data()
+        return self.__info["quoteType"].lower()
 
     def sector(self) -> str:
         """
