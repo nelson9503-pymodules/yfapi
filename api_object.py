@@ -106,7 +106,9 @@ class YFAPI:
     def quoteType(self) -> str:
         if self.__info == None or not "quoteType" in self.__info:
             self.__get_info1_data()
-        return self.__info["quoteType"].lower()
+        if not self.__info["quoteType"] == None:
+            self.__info["quoteType"] = self.__info["quoteType"].lower()
+        return self.__info["quoteType"]
 
     def sector(self) -> str:
         """
