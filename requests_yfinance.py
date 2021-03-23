@@ -8,7 +8,6 @@
 
 import json
 import requests
-import datetime
 
 
 def request_chart_data(symbol: str, max_years: int) -> dict:
@@ -45,8 +44,19 @@ def request_to_server(url: str) -> dict:
     """
     Send a request to the Server and get the json response from it.
     """
-    r = requests.get(url)
-    j = json.loads(r.text)
+    retry = 0
+    # sometimes, a connection failure will raise.
+    # retry 3 times then give up
+    while True: 
+        try:
+            r = requests.get(url)
+            j = json.loads(r.text)
+            break
+        except:
+            retry += 1
+            if retry == 3:
+                j = {}
+                break
     return j
 
 
